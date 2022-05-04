@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>U App</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <header id="main-header" class="bg-info py-sm-5">
+        <div class="container">
+            <div class="row">
+                <div class="col py-sm-4 text-center">
+                    <h1 class="text-dark font-weight-bold">U-APP</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card text-center bg-dark text-info mb-1">
+                        <div class="card-body">
+                            <h5>Wyszukiwarka</h5>
+                            <h4 class="display-4">
+                                <i class="fas fa-search"></i>
+                            </h4>
+                            <button class="btn btn-outline-info btn-block" data-toggle="collapse"
+                                data-target="#search-container">Przejdź</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card text-center bg-dark text-info mb-1">
+                        <div class="card-body">
+                            <h5>Moje filmy</h5>
+                            <h4 class="display-4">
+                                <i class="fas fa-tape"></i>
+                            </h4>
+                            <button class="btn btn-outline-info btn-block" data-toggle="collapse"
+                                data-target="#movies-container">Przejdź</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card text-center bg-dark text-info mb-1">
+                        <div class="card-body">
+                            <h5>Profil / Statystyki</h5>
+                            <h4 class="display-4">
+                                <i class="fas fa-user"></i>
+                            </h4>
+                            <button class="btn btn-outline-info btn-block" data-toggle="collapse"
+                                data-target="#summary-container">Przejdź</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--SEARCH CONTAINER WITH SEARCH FORM AND SEARCH RESULTS-->
+    <div id="search-container" class="collapse show">
+        <section id="search-section" class="bg-light">
+            <div class="container p-5">
+                <div class="row">
+                    <div class="col">
+                        <form id="search-form">
+                            <div class="row justify-content-md-center">
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-film fa-2x"></i>
+                                            </span>
+                                        </div>
+                                        <input id="search-input" type="text" class="form-control"
+                                            placeholder="Znajdź film..." required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="submit" id="search-btn" class="btn btn-primary btn-block"
+                                        value="Szukaj"></input>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="search-results-section" class="bg-dark">
+            <div class="container">
+                <div id="search-results-inner"
+                    class="d-flex flex-row flex-wrap  py-2 justify-content-around justify-content-xl-start pl-xl-2">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!--MY MOVIES CONTAINER-->
+    <section id="movies-container" class="bg-dark collapse">
+
+        <!--TITLE-->
+        <div class="bg-light">
+            <div class="container h-100 text-center">
+                <span class="h2 d-inline-block py-3">Moje filmy</span>
+                <div class="pb-3">
+                    <button class="btn btn-primary" id="export-btn">Eksportuj dane</button>
+                    <button id="import-btn" class="btn btn-primary">Importuj dane</button>
+                </div>
+            </div>
+        </div>
+
+        <!--CONTENT-->
+        <div class="container">
+            <button id="reverse-btn" class="btn btn-info mt-2">Najstarsze</button>
+        </div>
+
+        <div id="my-movies-inner" class="container">
+
+        </div>
+    </section>
+
+    <!--SUMMARY CONTAINER-->
+    <section id="summary-container" class="bg-dark collapse">
+        <div class="bg-light">
+            <div class="container h-100 text-center p-3">
+                <button id="options-btn" class="btn btn-primary">Zmień dane abonamentu</button>
+            </div>
+        </div>
+        <div class="container py-4">
+            <div class="mt-2 rounded bg-light p-3">
+                <h1 class="display-md-4">Twoje podsumowanie!</h1>
+                <hr class="my-4">
+
+                <div class="card text-center mb-3" style="background: #8ac926;">
+                    <div class="card-body">
+                        <h3>Koszt abonamentu</h3>
+                        <h4 class="display-4">
+                            <i class="fas fa-money-bill-alt"></i> <span id="unlimited-money">6</span> PLN
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="card text-center bg-danger mb-3">
+                    <div class="card-body">
+                        <h3>Koszt biletów poza abonamentem</h3>
+                        <h4 class="display-4">
+                            <i class="fas fa-money-bill-alt"></i> <span id="tickets-money">6</span> PLN
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="card text-center bg-success mb-3">
+                    <div class="card-body">
+                        <h3>Zaoszczędzone</h3>
+                        <h4 class="display-4">
+                            <i class="fas fa-money-bill-alt"></i> <span id="saved-money">6</span> PLN
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="card-columns">
+                    <div class="card text-center bg-info mb-3">
+                        <div class="card-body">
+                            <h3>Obejrzane</h3>
+                            <h4 class="display-4">
+                                <i class="fas fa-eye"></i> <span id="movies-watched">6</span>
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="card text-center bg-secondary mb-3">
+                        <div class="card-body">
+                            <h3>Czas spędzony w kinie</h3>
+                            <h4 class="display-4">
+                                <i class="fas fa-glasses"></i> <span id="time">6</span>
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="card text-center bg-warning mb-3">
+                        <div class="card-body">
+                            <h3>Średnia ocen</h3>
+                            <h4 class="display-4">
+                                <i class="fas fa-star"></i> <span id="avg">6</span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card text-center mb-3" style="background: #00796B;">
+                    <div class="card-body">
+                        <h3>Najczęściej oglądani twórcy</h3>
+                        <h4 class="display-4">
+                            <i class="fas fa-ticket-alt"></i> <span id="directors">6</span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="card text-center bg-primary mb-3">
+                    <div class="card-body">
+                        <h3>Najczęściej oglądane gatunki</h3>
+                        <h4 class="display-4">
+                            <i class="fas fa-user-astronaut"></i> <span id="genres">6</span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="card text-center">
+                    <h3>Sale kinowe</h3>
+                    <div style="width: 70%;" class=" mb-3 m-auto">
+                        <canvas id="chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!--FOOTER-->
+    <footer class="bg-dark p-5 text-info text-center">
+        &copy; <span id="current-year"></span>
+    </footer>
+
+    <!--DETAILS MODAL-->
+    <div id="details-modal" class="modal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content border-info">
+                <div class="modal-header bg-info">
+                    <h5 id="details-title" class="modal-title">Guardians of the Galaxy vol. 2</h5>
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <!--POSTER-->
+                        <div class="col-sm-6 mb-1 text-center">
+                            <img id="details-poster"
+                                src="https://m.media-amazon.com/images/M/MV5BN2MwNjJlODAtMTc1MS00NjkwLTg2NDMtYzFjZmU2MGM1YWUwXkEyXkFqcGdeQXVyMTYzMDM0NTU@._V1_SX300.jpg"
+                                alt="Plakat" width="220px" height="330px" class="rounded mt-sm-2">
+                        </div>
+
+                        <!--RATINGS-->
+                        <div class="col-sm-6 mb-1">
+                            <div class="card border-info">
+                                <div class="card-header bg-info">
+                                    Oceny
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex flex-column">
+                                        <div class="mt-1 d-flex justify-content-around">
+                                            <img src="img/rotten.jpg" width="70px" height="50px" class="rounded-circle">
+                                            <span id="rotten-rating" class="h1 text-danger pt-1">77</span>
+                                        </div>
+                                        <div class="my-4 d-flex justify-content-around">
+                                            <img src="img/imdb.jpg" width="70px" height="70px" class="rounded">
+                                            <span id="imdb-rating" class="h1 text-warning pt-2">77</span>
+                                        </div>
+                                        <div class="mb-2  d-flex justify-content-around">
+                                            <img src="img/Metacritic.svg.png" width="70px" height="70px"
+                                                class="rounded">
+                                            <span id="metacritic-rating" class="h1 text-success pt-2">77</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--MY RATING-->
+                    <div class="row">
+                        <div class="col">
+                            <div class="card mb-2 border-info">
+                                <div class="card-header bg-info">Mój seans</div>
+                                <div class="card-body">
+                                    <form id="add-movie-form">
+                                        <div class="form-group">
+                                            <label for="comment"
+                                                class="card-title font-weight-bold h5">Komentarz</label>
+                                            <textarea class="form-control" id="review" name="review"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="watchday" class="card-title font-weight-bold h5">Data
+                                                seansu*</label>
+                                            <input type="date" name="watchday" id="watchday" class="form-control"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rating" class="card-title font-weight-bold h5">Ocena*</label>
+                                            <input id="my-rating" type="range" class="custom-range" min="1" max="10"
+                                                step="1" value="1" name="my-rating" required>
+                                            <p class="card-text"><span id="my-rating-display">1</span>/10</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cinema-hall" class="card-title font-weight-bold h5">Sala
+                                                kinowa*</label>
+                                            <select class="form-control" id="cinema-hall" name="cinema-hall" required>
+                                                <option>2D</option>
+                                                <option>3D</option>
+                                                <option>IMAX2D</option>
+                                                <option>IMAX3D</option>
+                                                <option>4DX2D</option>
+                                                <option>4DX3D</option>
+                                            </select>
+                                        </div>
+
+                                        <button type="submit" id="btn-save-movie"
+                                            class="btn btn-primary btn-block">Zapisz</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--ABOUT MOVIE-->
+                    <div class="row">
+                        <div class="col">
+                            <div class="card border-info">
+                                <div class="card-header bg-info">O filmie</div>
+                                <div class="card-body">
+                                    <h5 class="card-title font-weight-bold">Reżyseria</h5>
+                                    <p class="card-text" id="details-director">James Gunn</p>
+                                    <h5 class="card-title font-weight-bold">Gatunek</h5>
+                                    <p class="card-text" id="details-genre">Akcja</p>
+                                    <h5 class="card-title font-weight-bold">Fabuła</h5>
+                                    <p class="card-text" id="details-plot">A young blade runner's discovery of a
+                                        long-buried
+                                        secret leads him to track down former blade runner Rick Deckard, who's been
+                                        missing for thirty years.</p>
+                                    <h5 class="card-title font-weight-bold">Data światowej premiery</h5>
+                                    <p class="card-text" id="details-released">06 Oct 2017</p>
+                                    <h5 class="card-title font-weight-bold">Czas trwania</h5>
+                                    <p class="card-text" id="details-runtime">164 min</p>
+                                    <h5 class="card-title font-weight-bold">Aktorzy</h5>
+                                    <p class="card-text" id="details-actors">Ryan Gosling, Dave Bautista, Robin Wright,
+                                        Mark
+                                        Arnold</p>
+                                    <h5 class="card-title font-weight-bold">Nagrody</h5>
+                                    <p class="card-text" id="details-awards">Won 2 Oscars. Another 81 wins & 131
+                                        nominations.
+                                    </p>
+                                    <h5 class="card-title font-weight-bold">Box Office</h5>
+                                    <p class="card-text" id="details-boxoffice">$91,800,042</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--CONFIG MODAL-->
+    <div id="config-modal" class="modal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Konfiguracja</h5>
+                </div>
+                <div class="modal-body">
+                    <label>Od kiedy masz Unlimited?</label>
+                    <input type="date" name="unlimitedDate" id="unlimited-date" class="form-control">
+                    <br>
+                    <label>Typ biletu, który Ci przysługuje</label>
+                    <select class="form-control" id="ticket-discount" name="ticketDiscount">
+                        <option>regular</option>
+                        <option>discount</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-config-save" class="btn btn-info">Zapisz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--SCROLL BUTTON-->
+    <button id="scroll-btn" class="btn btn-info"><i class="fas fa-arrow-circle-up fa-2x"></i></button>
+
+
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+        integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./js/scrollScript.js"></script>
+    <script>
+        $('[data-toggle="collapse"]').click(function () {
+            $('.show').collapse('hide');
+        });
+
+        //display my rating in modal on input[type="range"] move
+        var slider = document.getElementById('my-rating');
+        slider.oninput = function () {
+            document.getElementById('my-rating-display').innerHTML = this.value;
+        }
+
+        //CC
+        $('#current-year').text(new Date().getFullYear() + " Tomasz Kędziora");
+    </script>
+</body>
+
+</html>

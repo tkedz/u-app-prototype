@@ -1,0 +1,54 @@
+body {
+  position: relative; }
+
+#main-header h1 {
+  font-size: 4rem; }
+
+#search-section input, #search-section #search-btn {
+  height: 46px; }
+
+.card-img-top {
+  width: 220px;
+  height: 330px;
+  object-fit: cover; }
+
+#search-results-inner .card {
+  max-width: 220px;
+  overflow: hidden; }
+#search-results-inner .card-text {
+  word-wrap: break-word; }
+
+.card-custom-size {
+  max-width: 230px; }
+
+textarea:invalid {
+  box-shadow: none; }
+
+#scroll-btn {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px; }
+
+@media (max-width: 767px) {
+  #search-btn {
+    margin-top: 10px; }
+
+  .card-body h5, .card-body a.btn {
+    font-size: 1rem; } }
+@media (max-width: 575px) {
+  #main-header h1 {
+    font-size: 3.4rem; }
+  #main-header h4.display-4 {
+    font-size: 1.5rem; }
+
+  #summary-container .jumbotron h1 {
+    font-size: 2.2rem; } }
+@media (min-width: 576px) and (max-width: 767px) {
+  /*.card-body {
+      h5, a.btn {
+          font-size: 1rem;
+      }
+  }*/
+  #summary-container .jumbotron h1 {
+    font-size: 2.2rem; } }
